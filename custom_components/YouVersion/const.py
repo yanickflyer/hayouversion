@@ -10,4 +10,4 @@ API_PASSAGES = f"{API_BASE}/bibles/{{bible_id}}/passages/{{passage_id}}"
 
 # Optional default Bible id (user can override in config). Common public ids vary by region.
 CONF_BIBLE_ID = "bible_id"
-DEFAULT_BIBLE_ID = 1
+DEFAULT_BIBLE_ID = 3034
