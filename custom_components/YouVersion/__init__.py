@@ -30,7 +30,7 @@ async def async_setup_entry(hass, entry):
         LOGGER,
         name=f"{DOMAIN}_{entry.entry_id}",
         update_method=async_update_data,
-        update_interval=timedelta(days=1),
+        update_interval=timedelta(hours=1),
     )
 
     hass.data[DOMAIN][entry.entry_id]["coordinator"] = coordinator
