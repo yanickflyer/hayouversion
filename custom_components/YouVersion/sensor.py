@@ -1,37 +1,42 @@
-from __future__ import annotations
-
 from homeassistant.components.sensor import SensorEntity
-from homeassistant.helpers.update_coordinator import CoordinatorEntity
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DOMAIN, DEFAULT_NAME
 
 
-async def async_setup_entry(hass: HomeAssistant, entry, async_add_entities):
-    data = hass.data[DOMAIN][entry.entry_id]
-    coordinator = data["coordinator"]
-    # Ensure we have recent data before adding entity
-    await coordinator.async_request_refresh()
-    async_add_entities([YouVersionVOTDSensor(coordinator, entry)])
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback):
+    """Set up the YouVersion sensor from a config entry using the coordinator."""
+    entry_data = hass.data[DOMAIN].get(entry.entry_id)
+    if not entry_data:
+        return
+
+    coordinator = entry_data.get("coordinator")
+    if not coordinator:
+        return
+
+    async_add_entities([YouVersionVerseSensor(coordinator)], True)
 
 
-class YouVersionVOTDSensor(CoordinatorEntity, SensorEntity):
-    def __init__(self, coordinator, entry):
+class YouVersionVerseSensor(CoordinatorEntity, SensorEntity):
+    """Sensor that provides the YouVersion Verse of the Day using a DataUpdateCoordinator."""
+
+    def __init__(self, coordinator) -> None:
         super().__init__(coordinator)
-        self._entry = entry
         self._attr_name = DEFAULT_NAME
-        self._attr_unique_id = f"{entry.entry_id}_votd"
 
     @property
-    def state(self):
-        data = self.coordinator.data or {}
-        return data.get("text")
+    def native_value(self):
+        data = self.coordinator.data
+        if not data:
+            return None
+        return data.get("reference")
 
     @property
     def extra_state_attributes(self):
-        data = self.coordinator.data or {}
-        return {
-            "reference": data.get("reference"),
-            "passage_id": data.get("passage_id"),
-            "day": data.get("day"),
-        }
+        data = self.coordinator.data
+        if not data:
+            return {}
+        return {"passage": data.get("content")}
