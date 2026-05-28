@@ -94,3 +94,11 @@ class YouVersionVerseOfTheDay extends HTMLElement {
 }
 
 customElements.define("youversion-verseoftheday", YouVersionVerseOfTheDay);
+
+window.customCards = window.customCards || [];
+window.customCards.push({
+  type: "custom:youversion-verseoftheday",
+  name: "YouVersion Verse of the Day",
+  description: "Displays the YouVersion Verse of the Day from a Home Assistant sensor",
+  preview: true,
+});
