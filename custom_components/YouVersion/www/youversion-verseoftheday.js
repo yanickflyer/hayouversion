@@ -17,7 +17,7 @@ class YouVersionVerseOfTheDay extends HTMLElement {
 
     this.config = {
       entity: config.entity || "sensor.youversion_verse_of_the_day",
-      name: config.name || "Verse of the Day",
+      name: config.name || "Verse of the Day ✝️",
     };
   }
 
@@ -54,17 +54,18 @@ class YouVersionVerseOfTheDay extends HTMLElement {
         .verse-title {
           font-weight: 600;
           margin-bottom: 12px;
-          font-size: 1.05em;
+          font-size: 1.50em;
         }
         .verse-text {
-          font-size: 1.1em;
+          font-size: 1.25em;
           line-height: 1.5;
           margin-bottom: 10px;
           min-height: 3.5em;
         }
         .verse-reference {
-          font-size: 0.9em;
+          font-size: 1.1em;
           color: var(--secondary-text-color, #666);
+          font-style: italic;
         }
         .error {
           color: var(--error-color, #d32f2f);
