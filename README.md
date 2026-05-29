@@ -39,6 +39,19 @@ Attributes provided:
 - `reference` — human-readable Bible reference
 - `passage` — Bible passage identifier, e.g. `John 3:16`
 
+## Lovelace Card Now Supported
+
+Create A manual Card
+
+Add the following:
+
+```yaml
+type: custom:youversion-verseoftheday
+entity: sensor.youversion_verse_of_the_day
+```
+
+![Screenshot of Card](assets/manualcard.png)
+
 ## Notes
 
 - Only One Bible Is Supported
@@ -48,4 +61,4 @@ Attributes provided:
 
 - Add Natively on HACS instead of importing Repository
 - Add Bible Version
-- Create Lovelace Card
+- Add Image URL

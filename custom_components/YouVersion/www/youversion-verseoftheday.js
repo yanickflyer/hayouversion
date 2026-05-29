@@ -6,7 +6,7 @@ class YouVersionVerseOfTheDay extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.config = {
       entity: "sensor.youversion_verse_of_the_day",
-      name: "Verse of the Day",
+      name: "Verse of the Day ✝️",
     };
   }
 
@@ -54,7 +54,7 @@ class YouVersionVerseOfTheDay extends HTMLElement {
         .verse-title {
           font-weight: 600;
           margin-bottom: 12px;
-          font-size: 1.50em;
+          font-size: 1.5em;
         }
         .verse-text {
           font-size: 1.25em;
@@ -99,7 +99,7 @@ customElements.define("youversion-verseoftheday", YouVersionVerseOfTheDay);
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: "custom:youversion-verseoftheday",
-  name: "YouVersion Verse of the Day",
+  name: "Verse of the Day ✝️",
   description: "Displays the YouVersion Verse of the Day from a Home Assistant sensor",
   preview: true,
 });
